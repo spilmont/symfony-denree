@@ -1,0 +1,124 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Denrée{% endblock %}
+
+{% block body %}
+
+
+
+    {% for update in app.flashes('update') %}
+        <span class="flash-sucess">
+            {{ update }}
+        </span>
+    {% endfor %}
+
+    {% if app.user == user and app.user.valid == 0 %}
+        <div class="indication">
+            <h3 class="attention">Attention</h3>
+            Boujour {{ user.lastname }} {{ user.firstname }} veuillez envoyer les documents demandé est attendre qu'un moderateur
+            verifie et donne accés a la suite
+
+        </div>
+        <div class="fiftyfifty indication">les document demandées:<br>
+            <ul>
+                <li>le derniers avis d'imposition</li>
+                <li>facture ou écheancié  de gaz, électricité et eaux</li>
+                <li>justificatif de domicile</li>
+            </ul>
+        </div>
+            <div class="fiftyfifty">
+             {{ form(form) }}
+            </div>
+
+    {% elseif app.user != user %}
+        <div class="indication">
+            <h3 class="attention">Attention</h3>
+            vous avait pas accés a cette utilisateur
+        </div>
+    {% elseif app.user == user and app.user.valid == 1 %}
+
+        <form method="POST" class="mt10px mb10px">
+            <input type="radio" name="choice" value="{{ date[0] }}" checked><span id="date1">{{ date[0] }}</span>
+            <input type="radio" name="choice" value="{{ date[1] }}"><span id="date2">{{ date[1] }}</span>
+            <input type="radio" name="choice" value="{{ date[2] }}"><span id="date3">{{ date[2] }}</span>
+
+            <div class="ticket_box">
+                <div class="ticket">
+                    <div class="logo">
+                        <img class="" src="{{ asset('images/logo.png') }}" alt="{{ asset('images/logo.png') }}">
+                    </div>
+                    <div id="date">Boujour {{ user.lastname }} {{ user.firstname }} veillez choisir votre ticket</div>
+                    <div id="name"></div>
+                    <div id="familly"></div>
+                    <div id="address"></div>
+                    <div id="dateChoice"></div>
+                </div>
+                <div class="checked_tickets">
+                    <div id="countTickets">Tickets: {{tickets}}/2</div>
+
+                    {% for showticket in showTickets %}
+                    <div id="depotdate">
+                    {{ showticket.depotdate }}
+                    </div>
+                    {% endfor %}
+                    {% if  tickets == 2  %}
+                    <div class="alert-message">
+                        Vous avez le maximum de tickets
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            <input type="submit" id="submit" value="selectionner">
+        </form>
+
+
+
+
+    {% endif %}
+    <script src="{{ asset("js/Axios.js") }}"></script>
+    <script>
+
+        function depotchange(event) {
+
+            event.preventDefault();
+
+            axios.get('./ajax/' +{{ user }}).then((json) => {
+                document.getElementById('date').innerHTML = "date : " + json.data.date;
+                document.getElementById('name').innerHTML = "nom : " + json.data.lastname + ' ' + json.data.firstname;
+                document.getElementById('familly').innerHTML = "personnes dans le foyer : " + json.data.familly;
+                document.getElementById('address').innerHTML = "ville : " + json.data.adress;
+                document.getElementById('dateChoice').innerHTML = 'dépôt : ' + document.querySelector('input[name="choice"]:checked').value;
+            })
+        }
+
+        document.querySelectorAll('input[name="choice"]').forEach(function (a) {
+            a.addEventListener('change', depotchange)
+        });
+
+
+        function depotcheck() {
+
+
+
+          
+
+            axios.get('./check/' +{{ user}}).then(() => {
+
+
+
+                document.getElementById('countTickets').innerHTML =  9;
+
+            })
+        }
+
+        document.getElementById('submit').addEventListener("click", depotcheck);
+
+
+
+
+    </script>
+
+{% endblock %}
+
+
+

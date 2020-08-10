@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Denrée{% endblock %}
+
+{% block body %}
+
+    <h2>documents de {{ user.lastname }} {{ user.firstname }}</h2>
+    {% if images != (null) %}
+    <div class="document-container">
+        {% for image in images %}
+
+            <div class="document">
+            <img src="{{ asset('uploads/documents/'~user.id~'/'~image) }}" alt="{{ image }}">
+            </div>
+
+       {% endfor %}
+    </div>
+    {% else %}
+        <div class="alert-message ">Pas encore de document</div>
+    {% endif %}
+
+    <div class="center">
+        <a href="{{ path('yes-user', {'id':user.id} ) }}" class="link-button">autoriser</a>
+        <a href="{{ path("admin") }}" class="link-button">retour</a>
+
+    </div>
+{% endblock %}

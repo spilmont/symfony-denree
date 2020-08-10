@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Denrée{% endblock %}
+
+{% block body %}
+
+
+
+{% if ticket.user == app.user   %}
+<div class="center ticket">
+    <div >Depot : {{ ticket.depotdate}} </div>
+    <div>Nom : {{ ticket.name }} </div>
+    <div>Nombre de personnes : {{ ticket.nbfamilly}}  </div>
+    <div>Adresse : {{ ticket.country }}</div>
+    <img src="{{ qr_code_data_uri( url, { writer: 'svg', size: 150 }) }}" alt="qrcode" />
+</div>
+{% else%}
+    <div>Ce ticket appartient a un autre utilisateur </div>
+
+{% endif %}
+
+
+
+{% endblock %}
+
+
+

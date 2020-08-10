@@ -1,0 +1,334 @@
+:root{
+    --frontColor: #000000;
+    --greenColor : #B0C954;
+    --titleColor : #78B5E3;
+    --inputColor : rgba(116, 52, 0, 1)
+
+}
+
+
+html,body{
+    margin: 0;
+    height: 100%;
+
+
+}
+
+header{
+    height: 150px;
+    background-color: var(--greenColor);
+    background-image: url("../images/pumpkin.jpg");
+    background-size: cover;
+
+}
+
+footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 150px;
+    background-color: var(--greenColor);
+
+}
+
+
+h1,h2{
+    margin-top: 11px;
+    color: var(--titleColor);
+    text-align: center;
+}
+
+nav{
+ background:  linear-gradient(rgba(0,0,0,0), rgba(0,0,0,1));
+    height: 21px;
+}
+
+a{
+    text-decoration: none;
+}
+
+
+nav>a{
+
+    margin-left: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    color: var(--greenColor);
+    transition: transform, color  200ms;
+
+
+}
+nav>a:hover{
+    transform: scale(1.2);
+
+}
+
+.logo{
+    margin-top: 10px;
+    text-align: center;
+}
+
+.logo>img{
+    width: 100px;
+}
+
+article{
+    width: 250px;
+    text-align: center;
+}
+
+.photos{
+    width: 100%;
+}
+
+.flex-section{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.body-section{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+}
+
+label{
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    width: 10%;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+form{
+    text-align: center;
+}
+
+input{
+    margin-right: auto;
+    margin-left: auto;
+    color: var(--inputColor);
+    border-radius: 5px;
+    font-weight: bold;
+    display: block;
+}
+
+button{
+    background-color: var(--inputColor);
+    color: white;
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: 10px;
+}
+.name{
+    margin-left: 20px;
+    font-weight: bold;
+    color: var(--titleColor);
+}
+
+table{
+    width: 100%;
+    text-align: center;
+    border: black solid 2px;
+}
+
+.indication{
+    text-align: center;
+    border: black solid 2px;
+    border-radius: 20px;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 20px;
+}
+
+.attention{
+    color: red;
+}
+
+.ticket{
+    width: 500px;
+    height: 500px;
+    border: black dotted 50px;
+    border-image: url("../images/whit-clipart-raffle-ticket-87396-2527231.png")315;
+ ;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    text-align: center;
+    font-weight: bold;
+    line-height: 200%;
+}
+
+input[type=radio]{
+    display: inline-block;
+    margin-left: 5%;
+    margin-right: 10px;
+}
+
+.checked_tickets{
+    margin-top: 100px;
+    width: 300px;
+    height: 90px;
+    border: var(--frontColor) solid 2px ;
+
+
+}
+
+.ticket_box{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.alert-message{
+    color: red ;
+    font-weight: bold;
+    text-align: center;
+}
+.fiftyfifty{
+    width: 50%;
+  margin-right: auto;
+    margin-left: auto;
+   }
+
+.document-container {
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    border: black inset 1px;
+    height: 500px;
+    overflow: scroll;
+}
+
+.document{
+    margin-bottom: 50px;
+    text-align: center;
+}
+.link-button{
+    background-color: var(--inputColor);
+    color: white;
+    padding: 5px;
+
+}
+
+.center{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.flash-sucess{
+    width: 330px;
+    margin-top: 10px;
+    margin-left: 155px;
+    padding: 10px;
+    background-color: rgba(18, 255, 0, 0.25);
+    color: #1C440C;
+}
+
+.mt10px{
+    margin-top: 10px;
+}
+.mb10px{
+    margin-bottom: 10px;
+}
+.choiceOfTicket{
+    bottom: 30px;
+    background: red;
+    padding: 10px;
+    font-weight: bold;
+    float: right;
+    margin-right: 50px;
+
+    position: relative;
+}
+/* animation du bouton obtenir mes ticket */
+.choiceOfTicket span:nth-child(1),.choiceOfTicket span:nth-child(3){
+     position : absolute ;
+     top: 0;
+     left : 0;
+     width: 100%;
+     height: 100%;
+     display: block;
+     box-sizing: border-box;
+ }
+
+
+
+.choiceOfTicket span:nth-child(2){
+    position : absolute ;
+    top: 0;
+    left : 129px;
+    width: 41px;
+    height: 100%;
+    display: block;
+    box-sizing: border-box;
+}
+.choiceOfTicket span:nth-child(4){
+    position : absolute ;
+    top: 0;
+    left : 0;
+    width: 41px;
+    height: 100%;
+    display: block;
+    box-sizing: border-box;
+}
+
+.choiceOfTicket span:nth-child(1){
+    transform: rotate(0deg);
+}
+.choiceOfTicket span:nth-child(2){
+    transform: rotate(90deg);
+}
+.choiceOfTicket span:nth-child(3){
+    transform: rotate(180deg);
+}
+.choiceOfTicket span:nth-child(4){
+    transform: rotate(270deg);
+}
+
+.choiceOfTicket span:before{
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background: var(--greenColor);
+    animation: borderanimate 4s linear infinite;
+}
+
+@keyframes borderanimate {
+    0%{
+        transform: scaleX(0);
+        transform-origin: left;
+    }
+    50%{
+        transform: scaleX(1);
+        transform-origin: left;
+    }
+    50.1%{
+        transform: scaleX(1);
+        transform-origin: right;
+    }
+    100%{
+        transform: scaleX(0);
+        transform-origin: right;
+    }
+}
+
+
+/*--------------------------------------*/
+
+@media (max-width:500px ) {
+
+    .flash-sucess{
+        margin-top:0 ;
+        width: 100%;
+        margin-left: 0;
+        text-align: center;
+    }
+
+}

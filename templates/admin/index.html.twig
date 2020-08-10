@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Denrée{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { width: 95%; margin-left: auto; margin-right: auto;  font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5;  }
+</style>
+{% if app.user.roles[0]  == "ROLE_ADMIN" %}
+<div class="example-wrapper">
+    <h1>bonjour Monsieur Administrateur </h1>
+    <table>
+        <tr>
+                <th>nom</th>
+                <th>prénom</th>
+            <th>email</th>
+            <th>personnes par foyer</th>
+            <th>adresse</th>
+            <th>documents</th>
+            <th>Verification</th>
+            <td>Supprimer l'utilisateur</td>
+
+        </tr>
+            {% for user in users %}
+                <tr>
+                    <td>{{ user.lastname }}</td>
+                    <td>{{ user.firstname }}</td>
+                    <td>{{ user.email }}
+                    {% if user.roles[0] == "ROLE_ADMIN" %}
+                    <img alt="Administrateur"src={{ asset('images/administrateur.png')  }}>
+                    {% endif %}</td>
+                    <td>{{ user.nbfamilly }}</td>
+                    <td>{{ user.address }}</td>
+                    <td><a href="admin/documents/{{ user.id }}">Parcourir</a></td>
+                    <td>
+                        {% if user.valid == 0%}
+                            <img alt="non validé" src={{ asset('images/croix.png')   }} >
+                        {% endif %}
+                        {% if user.valid == 1%}
+                            <img alt ="validé" src={{ asset('images/valider.png')  }}>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if user.roles[0] != "ROLE_ADMIN" %}
+                            <a href="/delete/{{ user.id }}"><img alt ="effacer" src={{ asset('images/effacer.png')  }}></a>
+                        {% endif %}
+                    </td>
+            {% endfor %}
+
+    </table>
+
+
+
+
+</div>
+    {% else %}
+    <div>Vous n'avez pas acces au compte administrateur</div>
+    {% endif %}
+{% endblock %}

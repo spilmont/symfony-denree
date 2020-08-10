@@ -1,0 +1,44 @@
+{% extends 'base.html.twig'%}
+
+{% block body %}
+
+    {% for register in app.flashes('register') %}
+        <span class="flash-sucess">
+            {{ register }}
+        </span>
+    {% endfor %}
+
+
+
+
+<section class="flex-section">
+<article>
+<h2>les tickets</h2>
+<p>Postremo ad id indignitatis est ventum,
+    ut cum peregrini ob formidatam haut ita dudum alimentorum inopiam pellerentur ab urbe praecipites,
+    sectatoribus disciplinarum liberalium inpendio paucis sine respiratione ulla extrusis, tenerentur minimarum adseclae veri,
+    quique id simularunt ad tempus, et tria milia saltatricum ne interpellata quidem cum choris totidemque remanerent magistris.
+</p>
+    <img class="photos" src="{{ asset('images/vegetable.jpg') }}" alt="vegetable">
+</article>
+
+<article>
+<h2>le petit magasin</h2>
+<p>Postremo ad id indignitatis est ventum,
+    ut cum peregrini ob formidatam haut ita dudum alimentorum inopiam pellerentur ab urbe praecipites,
+    sectatoribus disciplinarum liberalium inpendio paucis sine respiratione ulla extrusis, tenerentur minimarum adseclae veri,
+    quique id simularunt ad tempus, et tria milia saltatricum ne interpellata quidem cum choris totidemque remanerent magistris.
+</p>
+    <img class="photos" src="{{ asset('images/vegetable.jpg') }}" alt="vegetable">
+</article>
+<article>
+<h2>les chéques alimentaires</h2>
+<p>Postremo ad id indignitatis est ventum,
+    ut cum peregrini ob formidatam haut ita dudum alimentorum inopiam pellerentur ab urbe praecipites,
+    sectatoribus disciplinarum liberalium inpendio paucis sine respiratione ulla extrusis, tenerentur minimarum adseclae veri,
+    quique id simularunt ad tempus, et tria milia saltatricum ne interpellata quidem cum choris totidemque remanerent magistris.
+</p>
+    <img class="photos" src="{{ asset('images/vegetable.jpg') }}" alt="vegetable">
+</article>
+</section>
+{% endblock %}
