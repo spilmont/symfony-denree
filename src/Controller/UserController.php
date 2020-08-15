@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+
 use App\Entity\Tickets;
 use App\Entity\User;
 use App\Form\DocumentType;
@@ -45,6 +46,7 @@ class UserController extends AbstractController
 
        $em = $this->getDoctrine()->getManager();
         $tickets = $em->getRepository(Tickets::class)->countTickets($id);
+
         $showTickets = $em->getRepository(Tickets::class)->showTickets($id);
 
         $date = $this->ladate();
@@ -68,6 +70,7 @@ class UserController extends AbstractController
             $ticket->setFlashingdepot(0);
             $ticket->setUser($user);
             $ticket->setSemaine(date('W'));
+            $ticket->setArchived(0);
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($ticket);
@@ -119,17 +122,15 @@ class UserController extends AbstractController
         $tickets = $em->getRepository(Tickets::class)->findAll();
 
 
-
         foreach ($tickets as $ticket ){
 
-        if( +date('W')> $ticket->getSemaine()+1) {
+            if( +date('W')> $ticket->getSemaine()+1 and $ticket->getArchived() == 0)  {
 
-           $em->remove($ticket);
-            $em->flush();
+                $ticket->setArchived(1);
+
+                $em->flush();
         }
         }
-
-
     }
 
 
@@ -138,7 +139,7 @@ class UserController extends AbstractController
      */
     public function checkTicket($id){
 
-        $tickets = $this->getDoctrine()->getManager()->getRepository(Tickets::class)->findBy(['user'=>$id]);
+        $tickets = $this->getDoctrine()->getManager()->getRepository(Tickets::class)->findBy(["user"=>$id,"archived" => 0]);
         $countTicket = count($tickets);
 
 
@@ -212,7 +213,9 @@ class UserController extends AbstractController
 
         $ticket = $em->getRepository(Tickets::class)->find($idTicket);
 
-        $url =   "admin/".$user->getId()."/ticket/".$ticket->getId()."/validate" ;
+
+
+        $url =    $_SERVER['HTTP_HOST']."/admin/".$user->getId()."/ticket/".$ticket->getId()."/validate" ;
 
         return $this->render("user/myTickets.html.twig",["ticket" => $ticket,"user"=> $user,"url"=> $url]);
 
@@ -226,10 +229,15 @@ class UserController extends AbstractController
         $em = $this->getDoctrine()->getManager();
         $user =$em->getRepository(User::class)->find($idUser);
 
-        $tickets = $em->getRepository(Tickets::class)->findBy(["user" => $idUser]);
+        $tickets = $em->getRepository(Tickets::class)->findBy(["user" => $idUser,"archived"=>0]);
 
         return $this->render("user/watchMyTickets.html.twig",["user"=> $user, "tickets" =>$tickets]);
 
     }
+
+
+
+
+
 
 }

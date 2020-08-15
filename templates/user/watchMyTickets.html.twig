@@ -5,7 +5,7 @@
 {% block body %}
 <ul>
    {% for ticket in tickets %}
-        <a href="{{ path('myTicket', {"userId" : ticket.user.id,"idTicket" : ticket.id}) }}"><li>  {{  ticket.depotdate  }}   </li></a>
+       <li><a href="{{ path('myTicket', {"userId" : ticket.user.id,"idTicket" : ticket.id}) }}">  {{  ticket.depotdate  }}  </a> </li>
    {% endfor %}
     </ul>
 

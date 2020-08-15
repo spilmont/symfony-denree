@@ -208,9 +208,12 @@ input[type=radio]{
     text-align: center;
 }
 .link-button{
+
+    display: table;
     background-color: var(--inputColor);
     color: white;
     padding: 5px;
+    border-radius: 5px;
 
 }
 
@@ -235,6 +238,9 @@ input[type=radio]{
 }
 .mb10px{
     margin-bottom: 10px;
+}
+.ml50px{
+    margin-left: 50px;
 }
 .choiceOfTicket{
     bottom: 30px;
@@ -299,6 +305,8 @@ input[type=radio]{
     background: var(--greenColor);
     animation: borderanimate 4s linear infinite;
 }
+
+
 
 @keyframes borderanimate {
     0%{

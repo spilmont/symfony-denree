@@ -8,6 +8,7 @@
     .example-wrapper code { background: #F5F5F5;  }
 </style>
 {% if app.user.roles[0]  == "ROLE_ADMIN" %}
+<a href="{{ path("ShowArchiveTickets") }}" class="ml50px link-button"> archives des tickets</a>
 <div class="example-wrapper">
     <h1>bonjour Monsieur Administrateur </h1>
     <table>

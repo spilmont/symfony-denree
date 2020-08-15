@@ -61,6 +61,11 @@ class Tickets
      */
     private $semaine;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $archived;
+
 
 
     public function getId(): ?int
@@ -172,6 +177,18 @@ class Tickets
     public function setSemaine(int $semaine): self
     {
         $this->semaine = $semaine;
+
+        return $this;
+    }
+
+    public function getArchived(): ?bool
+    {
+        return $this->archived;
+    }
+
+    public function setArchived(bool $archived): self
+    {
+        $this->archived = $archived;
 
         return $this;
     }

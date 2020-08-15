@@ -23,6 +23,7 @@ class TicketsRepository extends ServiceEntityRepository
       return   $queryBuilder = $this->createQueryBuilder('t')
          ->select('COUNT(t)')
         ->where('t.user = :user')
+          ->andWhere('t.archived = 0')
         ->setParameter('user',$user)
           ->getQuery()->getSingleScalarResult();
 
@@ -32,10 +33,13 @@ class TicketsRepository extends ServiceEntityRepository
         return   $queryBuilder = $this->createQueryBuilder('t')
             ->select('t.depotdate')
             ->where('t.user = :user')
+            ->andWhere('t.archived = 0')
             ->setParameter('user',$user)
             ->getQuery()->getResult();
 
     }
+
+
 
     // /**
     //  * @return Tickets[] Returns an array of Tickets objects

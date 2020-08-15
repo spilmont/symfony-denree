@@ -5,7 +5,7 @@ namespace App\Controller;
 use App\Entity\Tickets;
 use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Asset\Packages;
+
 use Symfony\Component\Routing\Annotation\Route;
 
 
@@ -65,6 +65,8 @@ class AdminController extends AbstractController
 
     }
 
+
+
     /**
      * @Route("admin/{userId}/ticket/{idTicket}/validate", name="validateTicket")
      */
@@ -86,6 +88,20 @@ class AdminController extends AbstractController
 
         }
         return $this->redirectToRoute("home");
+    }
+
+
+
+    /**
+     * @Route("admin/showArchivetickets", name="ShowArchiveTickets" )
+     */
+    public function showArchiveTickets(){
+
+        $em = $this->getDoctrine()->getManager();
+        $tickets = $em->getRepository(Tickets::class)->findBy(["archived"=>1]);
+
+
+        return $this->render('admin/archiveTickets.html.twig',["tickets"=> $tickets]);
     }
 
 
