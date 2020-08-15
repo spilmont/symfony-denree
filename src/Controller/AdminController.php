@@ -74,7 +74,7 @@ class AdminController extends AbstractController
     {
 
         $em = $this->getDoctrine()->getManager();
-        $user = $em->getRepository(User::class)->find($userId);
+        //$user = $em->getRepository(User::class)->find($userId);
 
         $ticket = $em->getRepository(Tickets::class)->find($idTicket);
 
