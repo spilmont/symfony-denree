@@ -4,8 +4,13 @@ namespace App\Controller;
 
 use App\Entity\Tickets;
 use App\Entity\User;
+use App\Form\TicketSearchType;
+use App\Form\UserSearchType;
+use Doctrine\ORM\Tools\Pagination\Paginator;
+use mysql_xdevapi\Statement;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 
@@ -14,14 +19,45 @@ class AdminController extends AbstractController
     /**
      * @Route("/admin", name="admin")
      */
-    public function index()
+    public function index(Request $request)
     {
+        $searchForm = $this->createForm(UserSearchType::class);
+        $searchForm->handleRequest($request);
+
         $em = $this->getDoctrine()->getManager();
         $users = $em->getRepository(User::class)->findAll();
 
+        if($searchForm->isSubmitted() && $searchForm->isValid()){
+
+
+
+            $lastname = $searchForm->getData()->getLastname();
+            $firstname = $searchForm->getData()->getFirstname();
+
+            $validState = $searchForm["valid"]->getData();
+
+
+            if($validState == "tous")
+                $users = $em->getRepository(User::class)->userSearch($lastname,$firstname);
+            elseif ($validState == "validé")
+                $users = $em->getRepository(User::class)->userSearchWithValid($lastname,$firstname, true);
+            elseif ($validState == "en attente")
+                $users = $em->getRepository(User::class)->userSearchWithValid($lastname,$firstname, false);
+
+
+
+
+
+
+
+            if($users == null){
+                $this->addFlash('erreur', 'Auccun utilisateur trouvé ');
+            }
+        }
 
         return $this->render('admin/index.html.twig', [
             'controller_name' => 'AdminController', "users" => $users,
+            'searchForm'=> $searchForm->createView()
         ]);
     }
 
@@ -95,13 +131,47 @@ class AdminController extends AbstractController
     /**
      * @Route("admin/showArchivetickets", name="ShowArchiveTickets" )
      */
-    public function showArchiveTickets(){
+    public function showArchiveTickets(Request $request){
+
+        $searchForm = $this->createForm(TicketSearchType::class);
+        $searchForm->handleRequest($request);
 
         $em = $this->getDoctrine()->getManager();
         $tickets = $em->getRepository(Tickets::class)->findBy(["archived"=>1]);
 
+        if($searchForm->isSubmitted() && $searchForm->isValid()){
 
-        return $this->render('admin/archiveTickets.html.twig',["tickets"=> $tickets]);
+
+
+            $name = $searchForm->getData()->getName();
+            $flashedState = $searchForm["flashingdepot"]->getData();
+
+
+
+
+                if($flashedState == "tous")
+                    $tickets = $em->getRepository(Tickets::class)->searchWithoutFlashingOption($name );
+                elseif ($flashedState == "yes")
+                    $tickets = $em->getRepository(Tickets::class)->searchWithFlashingOption($name, true );
+                elseif ($flashedState == "no")
+                    $tickets = $em->getRepository(Tickets::class)->searchWithFlashingOption($name, false );
+
+
+
+
+
+
+
+
+            if($tickets == null){
+                $this->addFlash('erreur', 'Auccun ticket trouvé ');
+            }
+        }
+
+
+
+
+        return $this->render('admin/archiveTickets.html.twig',["tickets"=> $tickets,"searchForm"=>$searchForm->createView()]);
     }
 
 

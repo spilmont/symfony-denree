@@ -3,6 +3,7 @@
 {% block title %}Denrée{% endblock %}
 
 {% block body %}
+    <div class="example-wrapper">
 
     <h2>documents de {{ user.lastname }} {{ user.firstname }}</h2>
     {% if images != (null) %}
@@ -19,9 +20,10 @@
         <div class="alert-message ">Pas encore de document</div>
     {% endif %}
 
-    <div class="center">
+    <div class=" flex-section mt10px g-button">
         <a href="{{ path('yes-user', {'id':user.id} ) }}" class="link-button">autoriser</a>
         <a href="{{ path("admin") }}" class="link-button">retour</a>
 
+    </div>
     </div>
 {% endblock %}

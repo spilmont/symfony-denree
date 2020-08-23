@@ -14,6 +14,20 @@ html,body{
 
 }
 
+.example-wrapper {
+    width: 95%;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    font: 18px/1.5 sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.example-wrapper code
+{ background: #F5F5F5;  }
+
 header{
     height: 150px;
     background-color: var(--greenColor);
@@ -117,6 +131,9 @@ input{
     display: block;
 }
 
+
+
+
 button{
     background-color: var(--inputColor);
     color: white;
@@ -167,6 +184,11 @@ input[type=radio]{
     display: inline-block;
     margin-left: 5%;
     margin-right: 10px;
+}
+
+.g-button{
+    width: 160px;
+    margin: auto;
 }
 
 .checked_tickets{
@@ -306,6 +328,24 @@ input[type=radio]{
     animation: borderanimate 4s linear infinite;
 }
 
+.font26px{
+    font-size: 26px;
+}
+
+.filter-box-user{
+    width: 550px;
+    margin: auto;
+}
+.filter-box-ticket{
+    width: 340px;
+    margin: auto;
+}
+
+.dropdown{
+    color: var(--inputColor);
+    font-weight: bold;
+    border-radius: 5px;
+}
 
 
 @keyframes borderanimate {
@@ -337,6 +377,9 @@ input[type=radio]{
         width: 100%;
         margin-left: 0;
         text-align: center;
+    }
+    .filter-box-user{
+        width: 40%;
     }
 
 }

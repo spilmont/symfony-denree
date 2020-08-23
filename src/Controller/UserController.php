@@ -56,9 +56,10 @@ class UserController extends AbstractController
         $user = $this->getDoctrine()->getManager()->getRepository(User::class)->find($id);
         $dateChoice =( isset($_POST['choice'])? filter_var($_POST['choice'],FILTER_SANITIZE_STRING):$_POST='');
 
+        $iExists =  $em->getRepository(Tickets::class)->findOneBy(["user"=> $id, "depotdate" => $dateChoice]);
 
 
-        if($dateChoice !=='' and $tickets < 2 ){
+        if($dateChoice !=='' and $tickets < 2 and !isset($iExists)  ){
 
 
 
@@ -75,10 +76,13 @@ class UserController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($ticket);
             $entityManager->flush();
+
+            return $this->redirectToRoute("user",["id"=>$id]);
         }
 
 
         $this->archivetickets();
+
 
 
 
@@ -145,7 +149,7 @@ class UserController extends AbstractController
 
 
         foreach ($tickets as $ticket){
-            $depotdate[] = $ticket->getDepotdate();
+            $depotdate= $ticket->getDepotdate();
 
         }
 

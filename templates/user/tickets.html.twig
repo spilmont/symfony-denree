@@ -54,7 +54,7 @@
                     <div id="dateChoice"></div>
                 </div>
                 <div class="checked_tickets">
-                    <div id="countTickets">Tickets: {{tickets}}/2</div>
+                    <div id="countTickets">Tickets: <span id="count">{{tickets}}</span>/2</div>
 
                     {% for showticket in showTickets %}
                     <div id="depotdate">
@@ -96,17 +96,18 @@
         });
 
 
-        function depotcheck() {
+        function depotcheck(event) {
 
 
 
           
 
-            axios.get('./check/' +{{ user}}).then(() => {
+            axios.get('./check/' +{{ user}}).then((json) => {
 
 
 
-                document.getElementById('countTickets').innerHTML =  9;
+                document.getElementById('count').innerHTML =  json.data.countTicket;
+                document.getElementById('depotdate'). innerHTML = json.data.depodate;
 
             })
         }

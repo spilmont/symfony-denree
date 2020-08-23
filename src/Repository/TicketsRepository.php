@@ -39,6 +39,35 @@ class TicketsRepository extends ServiceEntityRepository
 
     }
 
+    public function searchWithFlashingOption($name,$isFlashed){
+        return $queryBuilder = $this->createQueryBuilder("t")
+
+            ->andWhere('t.name LIKE  :name')
+            ->andWhere('t.flashingdepot LIKE :isFlashed')
+            ->andWhere('t.archived = 1')
+            ->setParameter('name', '%'.$name.'%')
+            ->setParameter('isFlashed', $isFlashed)
+            ->getQuery()
+            ->execute();
+
+
+
+    }
+
+    public function searchWithoutFlashingOption($name){
+        return $queryBuilder = $this->createQueryBuilder("t")
+            ->andWhere('t.name LIKE  :name')
+            ->andWhere('t.archived = 1')
+            ->setParameter('name', '%'.$name.'%')
+            ->getQuery()
+            ->execute();
+
+
+
+    }
+
+
+
 
 
     // /**

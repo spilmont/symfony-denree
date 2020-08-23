@@ -3,14 +3,24 @@
 {% block title %}Denrée{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { width: 95%; margin-left: auto; margin-right: auto;  font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5;  }
-</style>
+
 {% if app.user.roles[0]  == "ROLE_ADMIN" %}
-<a href="{{ path("ShowArchiveTickets") }}" class="ml50px link-button"> archives des tickets</a>
-<div class="example-wrapper">
+<a href="{{ path("ShowArchiveTickets") }}" class="ml50px link-button mt10px"> archives des tickets</a>
+
+    <div class="example-wrapper">
     <h1>bonjour Monsieur Administrateur </h1>
+
+    {{ form_start(searchForm) }}
+    <div class="flex-section filter-box-user">
+       {{ form_widget(searchForm.lastname) }}
+        {{ form_widget(searchForm.firstname) }}
+        {{ form_widget(searchForm.valid) }}
+    </div>
+    {{ form_widget(searchForm.rechercher) }}
+    {{ form_end(searchForm) }}
+
+
+
     <table>
         <tr>
                 <th>nom</th>
@@ -53,9 +63,14 @@
 
 
 
-
 </div>
+    {% for message in app.flashes('erreur') %}
+        <div class="alert-message font26px">
+            {{ message }}
+        </div>
+    {% endfor %}
     {% else %}
     <div>Vous n'avez pas acces au compte administrateur</div>
     {% endif %}
+
 {% endblock %}
