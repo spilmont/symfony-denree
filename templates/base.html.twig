@@ -6,6 +6,7 @@
         {% block stylesheets %}
             <link rel="stylesheet" href="{{ asset('css/style.css') }}">
         {% endblock %}
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
     <section class="body-section">
@@ -15,9 +16,13 @@
         <img  src="{{ asset('images/logo.png') }}" alt="logo">
         </div>
         <h1>Denrées</h1>
-        <nav>
+
+        <nav id="nav">
+
+
+              <div  id="button-menu">|||</div>
             {% if app.user %}
-             <span class="name">bonjour {{ app.user.lastname }} {{ app.user.firstname }}</span>
+             <span class="name device-hidden">bonjour {{ app.user.lastname }} {{ app.user.firstname }}</span>
              <a href="/update/{{ app.user.id }}">Mon compte</a>
                 {% if app.user.roles[0] == "ROLE_ADMIN" %}
              <a href="{{ path("admin") }}" >Administration</a>
@@ -26,20 +31,24 @@
              <a href="{{ path("app_logout") }}">déconnexion</a>
 
 
-           }
-             <a class="choiceOfTicket" href="/user/{{ app.user.id }}">
-                 <span></span>
-                 <span></span>
-                 <span></span>
-                 <span></span>
-                 Obtenir mes tickets
-             </a>
 
             {% else %}
             <a href="{{ path("app_login") }}">s'indentifier</a>
             <a href="{{ path("app_register") }}">s'enregistrer</a>
             {% endif %}
+
+
         </nav>
+
+        {%  if app.user %}
+        <a class="choiceOfTicket" href="/user/{{ app.user.id }}">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            Obtenir mes tickets
+        </a>
+        {%  endif %}
     </header>
 
     {% endblock %}
@@ -49,6 +58,19 @@
     {% endblock %}
         {% block javascripts %}{% endblock %}
     </section>
+
+    <script>
+
+        document.getElementById("button-menu").addEventListener("click",function () {
+
+            if(document.getElementById('nav').style.left < 0+"%")
+            document.getElementById('nav').style.left = 0+"%";
+            else
+                document.getElementById('nav').style.left = -32+"%";
+
+        })
+
+    </script>
 
     </body>
 </html>

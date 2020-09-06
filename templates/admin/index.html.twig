@@ -25,9 +25,9 @@
         <tr>
                 <th>nom</th>
                 <th>prénom</th>
-            <th>email</th>
-            <th>personnes par foyer</th>
-            <th>adresse</th>
+            <th class="device-hidden">email</th>
+            <th class="device-hidden">personnes par foyer</th>
+            <th class="device-hidden">adresse</th>
             <th>documents</th>
             <th>Verification</th>
             <td>Supprimer l'utilisateur</td>
@@ -37,12 +37,12 @@
                 <tr>
                     <td>{{ user.lastname }}</td>
                     <td>{{ user.firstname }}</td>
-                    <td>{{ user.email }}
+                    <td class="device-hidden">{{ user.email }}
                     {% if user.roles[0] == "ROLE_ADMIN" %}
                     <img alt="Administrateur" src={{ asset('images/administrateur.png')  }}>
                     {% endif %}</td>
-                    <td>{{ user.nbfamilly }}</td>
-                    <td>{{ user.address }}</td>
+                    <td class="device-hidden">{{ user.nbfamilly }}</td>
+                    <td class="device-hidden">{{ user.address }}</td>
                     <td><a href="admin/documents/{{ user.id }}">Parcourir</a></td>
                     <td>
                         {% if user.valid == 0%}

@@ -19,7 +19,6 @@ html,body{
     height: 100%;
     margin-left: auto;
     margin-right: auto;
-    font: 18px/1.5 sans-serif;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -54,7 +53,7 @@ h1,h2{
 
 nav{
  background:  linear-gradient(rgba(0,0,0,0), rgba(0,0,0,1));
-    height: 21px;
+ height: 21px;
 }
 
 a{
@@ -62,7 +61,7 @@ a{
 }
 
 
-nav>a{
+nav>  a{
 
     margin-left: 20px;
     font-size: 18px;
@@ -71,6 +70,9 @@ nav>a{
     transition: transform, color  200ms;
 
 
+}
+#button-menu{
+    display: none;
 }
 nav>a:hover{
     transform: scale(1.2);
@@ -265,7 +267,7 @@ input[type=radio]{
     margin-left: 50px;
 }
 .choiceOfTicket{
-    bottom: 30px;
+    bottom: 50px;
     background: red;
     padding: 10px;
     font-weight: bold;
@@ -290,7 +292,7 @@ input[type=radio]{
 .choiceOfTicket span:nth-child(2){
     position : absolute ;
     top: 0;
-    left : 129px;
+    left : 114px;
     width: 41px;
     height: 100%;
     display: block;
@@ -300,7 +302,7 @@ input[type=radio]{
     position : absolute ;
     top: 0;
     left : 0;
-    width: 41px;
+    width: 39px;
     height: 100%;
     display: block;
     box-sizing: border-box;
@@ -367,19 +369,160 @@ input[type=radio]{
     }
 }
 
+.radio-box{
+    display: flex;
+    justify-content: center;
+}
 
-/*--------------------------------------*/
 
-@media (max-width:500px ) {
+/*---------------- device : smartphone------------------*/
 
-    .flash-sucess{
-        margin-top:0 ;
+@media (max-device-width:500px ) {
+
+    body {
+        font-size: 15px;
+    }
+
+
+    article {
+        width: 60%;
+    }
+
+
+    .flash-sucess {
+        margin-top: 0;
         width: 100%;
         margin-left: 0;
         text-align: center;
     }
-    .filter-box-user{
+
+    .filter-box-user {
         width: 40%;
     }
 
+    /*----------- menu -----------*/
+
+
+    nav{
+        display: flex;
+        flex-direction: column;
+        left: -32%;
+        position: relative;
+        font-weight: bold;
+        background: rgba(0,0,0,0.5);
+        width: 40%;
+        height: 100%;
+        bottom: 77%;
+
+        transition: left 200ms ease-in-out;
+    }
+
+
+
+
+
+    #button-menu{
+        display: inline;
+        position: relative;
+        color: var(--greenColor);
+        font-size: 26px;
+        font-weight: bold;
+
+        text-align: end;
+        width: 96%;
+    }
+
+    nav > a {
+        font-size: 16px;
+        color: var(--greenColor);
+        margin-left: 5%;
+    }
+
+    input[type=text]{
+        margin-bottom: 10px;
+    }
+
+
+
+
+
+    .choiceOfTicket {
+        font-size: 12px;
+        left: 25px;
+        bottom: 108%;
+    }
+
+    .logo > img {
+        width: 80px;
+    }
+
+    .header > h1 {
+        font-size: 20px;
+    }
+
+    .choiceOfTicket span:nth-child(2) {
+
+        left: 85px;
+        width: 35px;
+
+    }
+
+    .choiceOfTicket span:nth-child(4) {
+
+
+        width: 35px;
+
+    }
+
+    footer {
+        height: 150px;
+
+    }
+
+    /*-------------------ticketchoice-------------------*/
+    .radio-box{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .checked_tickets{
+        width: 100%;
+        display: block;
+        margin-top: 50px;
+        margin-bottom: 50px;
+    }
+
+    .ticket_box{
+        flex-direction: column-reverse;
+        align-items: center;
+        width: 80%;
+        margin: auto;
+    }
+
+    .ticket{
+        width: 80%;
+        height: 100%;
+
+    }
+
+    /*--------------formulaire------------------*/
+    label{
+        width: 100%;
+    }
+
+    /*--------------tableau administration------------------*/
+    .device-hidden{
+        display: none;
+    }
+    table{
+        font-size: 12px;
+    }
+
+    /*----------------document-------------------------------*/
+    .document-container{
+        width: 90%;
+        height: 60vh;
+    }
 }
+
+

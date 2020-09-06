@@ -38,10 +38,11 @@
     {% elseif app.user == user and app.user.valid == 1 %}
 
         <form method="POST" class="mt10px mb10px">
+            <div class="radio-box">
             <input type="radio" name="choice" value="{{ date[0] }}" checked><span id="date1">{{ date[0] }}</span>
             <input type="radio" name="choice" value="{{ date[1] }}"><span id="date2">{{ date[1] }}</span>
             <input type="radio" name="choice" value="{{ date[2] }}"><span id="date3">{{ date[2] }}</span>
-
+            </div>
             <div class="ticket_box">
                 <div class="ticket">
                     <div class="logo">
